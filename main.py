@@ -1,4 +1,5 @@
 import win32com.client
+import psutil
 
 
 def check_os_version() -> bool:
@@ -12,7 +13,10 @@ def check_ram() -> bool:
     """
     Оперативная память (ОЗУ): 16 Гб
     """
-    pass
+    if (psutil.virtual_memory().total / 1000000000) <= 17:
+        return False
+    else:
+        return True
 
 
 def check_architecture() -> bool:
@@ -35,3 +39,6 @@ def check_virtual_machine() -> bool:
     Активированная настройка «Платформа виртуальной машины»
     """
     pass
+
+
+print(check_ram())

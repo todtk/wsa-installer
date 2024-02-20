@@ -1,5 +1,6 @@
 import win32com.client
 import psutil
+import platform
 
 
 def check_os_version() -> bool:
@@ -15,9 +16,12 @@ def check_ram() -> bool:
 
 
 def check_architecture() -> bool:
-    """
-    Архитектура процессора: x64 или ARM64
-    """
+    """Архитектура процессора: x64 или ARM64"""
+    match platform.machine():
+        case "AMD64":
+            return True
+        case _:
+            return False
 
 
 def check_virtualization() -> bool:
@@ -36,4 +40,4 @@ def check_virtual_machine() -> bool:
     pass
 
 
-print(check_ram())
+print(check_architecture())

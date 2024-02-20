@@ -10,13 +10,8 @@ def check_os_version() -> bool:
 
 
 def check_ram() -> bool:
-    """
-    Оперативная память (ОЗУ): 16 Гб
-    """
-    if (psutil.virtual_memory().total / 1000000000) <= 17:
-        return False
-    else:
-        return True
+    """Проверяет соответствие трабованиям RAM (>16GB)"""
+    return (psutil.virtual_memory().total / 1000000000) > 17
 
 
 def check_architecture() -> bool:
